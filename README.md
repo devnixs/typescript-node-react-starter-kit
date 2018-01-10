@@ -1,30 +1,24 @@
-# SmilingPanda Starter Kit
+# Node + React + Typescript Starter Kit
 
-## Hi everybody
-
-Here is my simply react/redux starter with few technologies.
+Front :
 
 * Typescript
 * React
 * React Router
-* Redux + replace reducers
+* Redux
 * Webpack
 * Babel
 * SASS
+* Hot reloading
+
+Back :
+
+* Typescript
+* Express
 
 ### install
 
 ```
-git clone https://github.com/akopichin/webpack-react-template
-cd webpack-react-template/
-npm i
-npm run build
-// to run the server
-npm run start
+npm install
+npm run dev
 ```
-
-### todo
-* Async module loading
-
-### questions
-telegram: @smilingPanda

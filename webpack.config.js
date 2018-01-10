@@ -24,7 +24,7 @@ module.exports = {
       'babel-polyfill',
       !isProduction ? 'react-hot-loader/patch' : undefined,
       !isProduction ? 'webpack/hot/only-dev-server' : undefined,
-      './app/client.tsx',
+      './src/client.tsx',
       './styles/app.scss',
     ]),
   },
@@ -46,7 +46,7 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        loader: extractCSS.extract(['css-loader', 'sass-loader']),
+        loader: isProduction ? extractCSS.extract(['css-loader', 'sass-loader']) : ['css-loader', 'sass-loader'],
       },
       {
         test: /\.jsx?$/,
@@ -111,7 +111,7 @@ module.exports = {
       alwaysWriteToDisk: true,
       outputPath: path.join(__dirname, 'back'),
     }),
-    extractCSS,
+    isProduction ? extractCSS : null,
   ]),
 
   resolve: {

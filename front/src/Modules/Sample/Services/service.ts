@@ -1,4 +1,4 @@
-import {get} from 'app/Core/Utils/RequestUtils';
+import {get} from 'src/Core/Utils/RequestUtils';
 
 import {ISampleApi} from '../Models/ISampleApi';
 

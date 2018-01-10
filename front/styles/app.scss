@@ -1,5 +1,9 @@
-//@import url("./layout.scss");
+body {
+    padding-top: 5rem;
+    background: #000;
+}
 
-#app {
-    color: #ccc;
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
 }
