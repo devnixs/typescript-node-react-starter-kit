@@ -46,7 +46,7 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        loader: isProduction ? extractCSS.extract(['css-loader', 'sass-loader']) : ['css-loader', 'sass-loader'],
+        loader: isProduction ? extractCSS.extract(['css-loader', 'sass-loader']) : ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.jsx?$/,
