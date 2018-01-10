@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "jsx": "react",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "stripInternal": true,
+        "target": "es5",
+        "lib": ["es5", "dom", "es6", "es2015.promise"],
+        "baseUrl": "./src",
+        "paths": {
+            "*": [
+                "*"
+            ]
+        },
+        "typeRoots": [
+            "node_modules/@types",
+            "fixtypings"
+        ]
+    },
+    "include": [
+        "src/**/*",
+        "@types/app.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

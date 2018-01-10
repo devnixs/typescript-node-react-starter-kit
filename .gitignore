@@ -1,0 +1,5 @@
+front/build
+node_modules
+.idea/*
+*.iml
+
