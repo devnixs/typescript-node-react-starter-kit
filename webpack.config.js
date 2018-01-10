@@ -20,7 +20,13 @@ module.exports = {
   context: path.resolve(__dirname, 'front'),
 
   entry: {
-    app: ['babel-polyfill', './app/app', './styles/app.scss'],
+    app: filter([
+      'babel-polyfill',
+      !isProduction ? 'react-hot-loader/patch' : undefined,
+      !isProduction ? 'webpack/hot/only-dev-server' : undefined,
+      './app/client.tsx',
+      './styles/app.scss',
+    ]),
   },
 
   output: {
@@ -54,30 +60,30 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
         test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
         loader: 'file-loader?name=[path][name].[ext]',
       },
-    ]
+    ],
   },
   node: {
-      // workaround for webpack-dev-server issue
-      // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
-      fs: 'empty',
-      net: 'empty'
+    // workaround for webpack-dev-server issue
+    // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
+    fs: 'empty',
+    net: 'empty',
   },
   devServer: {
-      contentBase: path.resolve(__dirname, 'front'),
-      hot: true,
-      stats: {
-          warnings: false
-      },
-      headers: {
-          "Access-Control-Allow-Origin": "*"
-      }
+    contentBase: path.resolve(__dirname, 'front'),
+    hot: true,
+    stats: {
+      warnings: false,
+    },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
 
   plugins: filter([
@@ -92,15 +98,18 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(NODE_ENV),
+      'process.env': {
+        NODE_ENV: NODE_ENV === 'development' ? '"development"' : '"production"',
+      },
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'front/index.html'),
       filename: path.join(__dirname, 'front/build/index.html'),
-      alwaysWriteToDisk: true
+      alwaysWriteToDisk: true,
     }),
     new HtmlWebpackHarddiskPlugin({
       alwaysWriteToDisk: true,
-      outputPath: path.join(__dirname, 'back')
+      outputPath: path.join(__dirname, 'back'),
     }),
     extractCSS,
   ]),

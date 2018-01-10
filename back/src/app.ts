@@ -42,5 +42,4 @@ app.get('*', (req, res) => {
     res.send(newContent);
   });
 });
-
 module.exports = app;

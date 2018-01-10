@@ -41,7 +41,7 @@ class HelloComponent extends React.Component<IStateProps & IDispatchProps, {}> {
             <div onClick={() => { actions.loadListAsync(); }}>
                 {message}
                 <div>
-                    TEST
+                    TEST 1234
                     {!!exampleVisible && <Example />}
                 </div>
             </div>
