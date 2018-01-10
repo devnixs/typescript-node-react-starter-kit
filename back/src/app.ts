@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
 import * as flash from 'express-flash';
 import * as path from 'path';
 import * as bluebird from 'bluebird';
+import * as fs from 'fs';
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: '.env.example' });
@@ -31,5 +32,15 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  * API examples routes.
  */
 app.get('/api', apiController.getApi);
+
+app.get('*', (req, res) => {
+  fs.readFile(path.join(__dirname, '../index.html'), 'utf8', function(err, contents) {
+    const newContent = contents
+      .replace('href="styles/app.css"', 'href="http://localhost:8080/styles/app.css"')
+      .replace('src="vendors.bundle.js"', 'src="http://localhost:8080/vendors.bundle.js"')
+      .replace('src="app.bundle.js"', 'src="http://localhost:8080/app.bundle.js"')
+    res.send(newContent);
+  });
+});
 
 module.exports = app;

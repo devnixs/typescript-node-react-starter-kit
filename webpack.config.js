@@ -96,9 +96,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'front/index.html'),
       filename: path.join(__dirname, 'front/build/index.html'),
+      alwaysWriteToDisk: true
     }),
     new HtmlWebpackHarddiskPlugin({
       alwaysWriteToDisk: true,
+      outputPath: path.join(__dirname, 'back')
     }),
     extractCSS,
   ]),
