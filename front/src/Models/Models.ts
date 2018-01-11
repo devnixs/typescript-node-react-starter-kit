@@ -1,5 +1,3 @@
-import {EProcessStatus} from './Enums';
-
 /**
  * Describing simple action.
  */
@@ -24,7 +22,6 @@ interface IErrorsResult {
  * @prop {IErrorsResult>} [errors] Errors.
  */
 export interface IAsyncData<T> {
-    status: EProcessStatus;
     data: T;
     errors?: IErrorsResult;
 }
