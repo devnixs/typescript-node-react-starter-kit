@@ -4,11 +4,12 @@
     "dev":
       "concurrently -k -p \"[{name}]\" -n \"Webpack,TypeScript Server,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"better-npm-run watch-client\" \"better-npm-run watch-typescript-server-files\" \"better-npm-run watch-server\"",
     "start": "better-npm-run start-server",
+    "heroku-prebuild": "npm install",
     "heroku-postbuild": "npm run build"
   },
   "betterScripts": {
     "build-front": {
-      "command": "\"node_modules/.bin/webpack\" -p --progress --bail --colors",
+      "command": "\"./node_modules/.bin/webpack\" -p --progress --bail --colors",
       "env": {
         "NODE_ENV": "production"
       }
