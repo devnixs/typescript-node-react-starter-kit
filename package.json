@@ -3,7 +3,7 @@
     "build": "better-npm-run build-front && better-npm-run build-back",
     "dev": "concurrently -k -p \"[{name}]\" -n \"Webpack,TypeScript Server,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"better-npm-run watch-client\" \"better-npm-run watch-typescript-server-files\" \"better-npm-run watch-server\"",
     "start": "better-npm-run start-server",
-    "heroku-prebuild": "npm install",
+    "heroku-prebuild": "npm install --only=dev",
     "heroku-postbuild": "npm run build"
   },
   "betterScripts": {
@@ -110,7 +110,8 @@
     "ts-node": "^4.0.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
     "@types/opn": "^5.1.0",
@@ -145,8 +146,7 @@
     "request": "^2.83.0",
     "superagent": "^3.4.1",
     "superagent-bluebird-promise": "^4.1.0",
-    "tslint": "^5.8.0",
-    "webpack": "^3.10.0"
+    "tslint": "^5.8.0"
   },
   "engines": {
     "node": "8.7.0",
