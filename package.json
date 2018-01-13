@@ -1,12 +1,14 @@
 {
   "scripts": {
     "build": "better-npm-run build-front && better-npm-run build-back",
-    "dev": "concurrently -k -p \"[{name}]\" -n \"Webpack,TypeScript Server,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"better-npm-run watch-client\" \"better-npm-run watch-typescript-server-files\" \"better-npm-run watch-server\"",
-    "start": "better-npm-run start-server"
+    "dev":
+      "concurrently -k -p \"[{name}]\" -n \"Webpack,TypeScript Server,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"better-npm-run watch-client\" \"better-npm-run watch-typescript-server-files\" \"better-npm-run watch-server\"",
+    "start": "better-npm-run start-server",
+    "heroku-postbuild": "npm run build"
   },
   "betterScripts": {
     "build-front": {
-      "command": "webpack",
+      "command": "webpack -p --progress --bail --colors",
       "env": {
         "NODE_ENV": "production"
       }
@@ -14,17 +16,17 @@
     "build-back": {
       "command": "tsc -p back",
       "env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "production"
+      }
+    },
+    "start-server": {
+      "command": "node back/dist/server.js",
+      "env": {
+        "NODE_ENV": "production"
       }
     },
     "watch-client": {
       "command": "webpack-dev-server --debug  --progress --colors --watch --hot --inline",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "start-server": {
-      "command": "node dist/server.js",
       "env": {
         "NODE_ENV": "development"
       }
@@ -145,5 +147,9 @@
     "superagent": "^3.4.1",
     "superagent-bluebird-promise": "^4.1.0",
     "tslint": "^5.8.0"
+  },
+  "engines": {
+    "node": "8.7.0",
+    "npm": "5.4.2"
   }
 }

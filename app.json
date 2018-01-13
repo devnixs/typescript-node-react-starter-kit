@@ -1,0 +1,17 @@
+{
+  "name": "product-comparator",
+  "description": "Product Comparator",
+  "env": {},
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

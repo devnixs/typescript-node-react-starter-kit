@@ -16,6 +16,8 @@ let extractCSS = new ExtractTextPlugin('styles/app.css');
 const filter = arr => arr.filter(i => i);
 const isProduction = NODE_ENV !== 'development';
 
+const outDirectory = path.resolve(__dirname, 'back/dist/public/build');
+
 module.exports = {
   context: path.resolve(__dirname, 'front'),
 
@@ -30,8 +32,8 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, 'front/build'),
-    filename: isProduction ? '[name].[hash].bundle.js' : '[name].bundle.js',
+    path: outDirectory,
+    filename: isProduction ? '[name].[chunkhash].bundle.js' : '[name].bundle.js',
   },
 
   watch: NODE_ENV === 'development',
@@ -87,7 +89,7 @@ module.exports = {
   },
 
   plugins: filter([
-    new CleanWebpackPlugin(path.join(__dirname, 'front/build')),
+    new CleanWebpackPlugin(outDirectory),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
       // move all node_modules to vendors bundle.
@@ -104,7 +106,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'front/index.html'),
-      filename: path.join(__dirname, 'front/build/index.html'),
+      filename: path.join(__dirname, 'back/index.html'),
       alwaysWriteToDisk: true,
     }),
     new HtmlWebpackHarddiskPlugin({
@@ -123,6 +125,7 @@ module.exports = {
 if (NODE_ENV == 'production') {
   module.exports.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compress: {
         // don't show unreachable variables etc
         warnings: false,
