@@ -8,7 +8,7 @@
   },
   "betterScripts": {
     "build-front": {
-      "command": "webpack -p --progress --bail --colors",
+      "command": "\"node_modules/.bin/webpack\" -p --progress --bail --colors",
       "env": {
         "NODE_ENV": "production"
       }
