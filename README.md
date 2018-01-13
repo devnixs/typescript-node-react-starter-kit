@@ -16,13 +16,15 @@ Front :
 * SASS
 * Hot reloading
 
+Note : No server side rendering.
+
 Back :
 
 * Node
 * Typescript
 * Express
 
-### install
+### Install
 
 ```
 npm install
